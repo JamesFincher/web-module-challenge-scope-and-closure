@@ -155,16 +155,27 @@ Use the scoreboard function below to do the following:
   */
 
 function scoreboard(getInningScoreCB, inningCB, numOfRoundsToPlay) {
-  var returnScoreBoard = []
+  let returnScoreBoard = []
   let home = 0
   let away = 0
   for (let i = 0; i < numOfRoundsToPlay; i++) {
-    let push = function () {
-      return getInningScoreCB(inning)
-    }
-    console.log(push())
-    returnScoreBoard.push(push())
+    let currentInning = getInningScore(inningCB)
+    let homeScore = currentInning.Home
+    let awayScore = currentInning.Away
+    home = home + currentInning.Home
+    away = away + currentInning.Away
+    returnScoreBoard.push(`Inning ${i}: Away ${awayScore} - Home`)
   }
+  if (home === away) {
+    returnScoreBoard.push(`This game will require extra innings: Away ${away} = Home ${home}`)
+  }
+  else { returnScoreBoard.push(`The final score is Away: ${away} - Home: ${home}`) };
+
+  if (home === away) { returnScoreBoard.push(`It's a TIE`) }
+  else if (home > away) {
+    returnScoreBoard.push(`Home wins!`)
+  }
+  else { returnScoreBoard.push(`Away wins`) }
   return returnScoreBoard
 }
 
