@@ -111,7 +111,7 @@ function getInningScore(cb) {
   return returnInning  /*Your Code Here */
 }
 
-console.log(getInningScore(inning))
+// console.log(getInningScore(inning))
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -154,10 +154,23 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScoreCB, inningCB, numOfRoundsToPlay) {
+  var returnScoreBoard = []
+  let home = 0
+  let away = 0
+  for (let i = 0; i < numOfRoundsToPlay; i++) {
+    let push = function () {
+      return getInningScoreCB(inning)
+    }
+    console.log(push())
+    returnScoreBoard.push(push())
+  }
+  return returnScoreBoard
 }
 
+
+
+console.log(scoreboard(getInningScore, inning, 9))
 
 
 
